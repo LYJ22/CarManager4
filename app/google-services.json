@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "784848296036",
+    "project_id": "carmanager-d7a87",
+    "storage_bucket": "carmanager-d7a87.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784848296036:android:554f6ebc2b091d89caa771",
+        "android_client_info": {
+          "package_name": "com.autoever.carmanager4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPjOU884fLYsdLSSQh6qvDJ10VaePkDi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
