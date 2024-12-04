@@ -12,13 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="제어"
-        android:textSize="48sp"
+        android:textSize="34sp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="@color/material_dynamic_neutral90"
+
+        android:layout_marginTop="16dp"
+        android:background="#Ece9e9"
         android:orientation="horizontal"
         android:padding="16dp">
 
@@ -81,7 +83,7 @@
                 android:background="@drawable/rounded_button"
                 android:padding="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/Lock" />
+                android:src="@drawable/lock" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -95,7 +97,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="@color/material_dynamic_neutral90"
+
+        android:background="#ECE9E9"
         android:orientation="horizontal"
         android:padding="16dp">
 
@@ -112,13 +115,13 @@
                 android:background="@drawable/rounded_button"
                 android:padding="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/Horn" />
+                android:src="@drawable/horn" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="경적" />
         </LinearLayout>
 
         <LinearLayout
@@ -158,7 +161,7 @@
                 android:background="@drawable/rounded_button"
                 android:padding="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/Padlock" />
+                android:src="@drawable/padlock" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -173,7 +176,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="30dp"
-        android:background="@color/material_dynamic_neutral90"
+        android:background="#ece9e9"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -206,7 +209,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_marginStart="32dp"
-                android:text="22.2"
+                android:text="22.2℃"
                 android:textColor="@color/black"
                 android:textSize="48sp"
                 android:textStyle="bold" />
