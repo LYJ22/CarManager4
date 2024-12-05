@@ -2,6 +2,7 @@ package com.autoever.carmanager4.fragments
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationListener
 import android.location.LocationManager
@@ -13,9 +14,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.location.Location
+import android.util.Log
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.autoever.carmanager4.R
 import com.autoever.carmanager4.WeatherData
+import com.autoever.carmanager4.activities.RegisterActivity
+import com.autoever.carmanager4.models.Car
+import com.google.firebase.firestore.FirebaseFirestore
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
@@ -37,6 +43,11 @@ class HomeFragment : Fragment() {
     private lateinit var weatherIcon: ImageView
     private lateinit var mLocationManager: LocationManager
     private lateinit var mLocationListener: LocationListener
+    private lateinit var carModelTextView: TextView
+    private lateinit var carImageView: ImageView
+    private lateinit var carNumTextView: TextView
+    private lateinit var textViewRemove: TextView
+    private val firestore =FirebaseFirestore.getInstance()
 
 
     override fun onCreateView(
@@ -47,6 +58,15 @@ class HomeFragment : Fragment() {
         weatherState = view.findViewById(R.id.weather_tv)
         temperature = view.findViewById(R.id.temperature_tv)
         weatherIcon = view.findViewById(R.id.weather_ic)
+        carModelTextView = view.findViewById(R.id.carModelTextView)
+        carImageView = view.findViewById(R.id.carImageView)
+        carNumTextView = view.findViewById(R.id.carNumTextView)
+        textViewRemove = view.findViewById(R.id.textViewRemove)
+
+        setOnClickListener()
+
+        fetchCarInfo()
+
         return view
     }
 
@@ -55,16 +75,34 @@ class HomeFragment : Fragment() {
         requestLocationUpdates()
     }
 
+    private fun fetchCarInfo() {
+        firestore.collection("cars").document("car1")
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val car = document.toObject(Car::class.java)
+                    carModelTextView.text = car?.model ?: "모델 정보 없음"
+//                    carImageView.setImageResource()
+                    carNumTextView.text = car?.num ?: "차 번호 정보 없음"
+                } else {
+                    Toast.makeText(context, "차 정보가 없습니다", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(context, "차 정보를 불러오는 데 실패했습니다: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
     private fun requestLocationUpdates() {
         mLocationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         mLocationListener = object : LocationListener {
             override fun onLocationChanged(location: Location) {
                 val params = RequestParams().apply {
                     put("lat", location.latitude)
-                    put("lon", location.longitude)
+                    put("lon", location.longitude+248.67466165)
                     put("appid", API_KEY)
                 }
                 doNetworking(params)
+                Log.d("Location", "Latitude: ${location.latitude}, Longitude: ${location.longitude}")
             }
 
             override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
@@ -88,12 +126,14 @@ class HomeFragment : Fragment() {
             return
         }
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener)
+        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener)
     }
 
 
     private fun doNetworking(params: RequestParams) {
         var client = AsyncHttpClient()
-
+        val urlWithParams = WEATHER_URL + "?" + params.toString()
+        Log.d("Weather API Call", urlWithParams) // 로그 추가
         client.get(WEATHER_URL, params, object: JsonHttpResponseHandler() {
             override fun onSuccess(
                 statusCode: Int,
@@ -122,4 +162,18 @@ class HomeFragment : Fragment() {
         }
     }
 
+    fun setOnClickListener() {
+        textViewRemove.setOnClickListener {
+            // 앱에 저장돼 있는 carID 삭제
+            val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.remove("carID")
+            editor.commit()
+
+            // 차량등록 액티비티로 이동
+            val intent = Intent(requireContext(), RegisterActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+        }
+    }
 }
