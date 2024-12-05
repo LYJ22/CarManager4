@@ -49,7 +49,6 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
-    testImplementation(libs.junit.jupiter)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
