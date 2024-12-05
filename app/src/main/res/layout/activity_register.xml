@@ -654,7 +654,7 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="소형트럭 & 택시"
+                    android:text="소형트럭/택시"
                     android:textSize="20sp" />
 
                 <LinearLayout
