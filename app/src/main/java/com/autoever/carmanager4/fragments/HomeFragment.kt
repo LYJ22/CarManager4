@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.location.Location
-import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.autoever.carmanager4.R
 import com.autoever.carmanager4.WeatherData
@@ -22,7 +21,6 @@ import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import cz.msebera.android.httpclient.Header
 import org.json.JSONObject
-import retrofit2.Response
 
 // 홈 페이지
 class HomeFragment : Fragment() {
@@ -37,7 +35,6 @@ class HomeFragment : Fragment() {
     private lateinit var weatherState: TextView
     private lateinit var temperature: TextView
     private lateinit var weatherIcon: ImageView
-    private lateinit var locationTextView: TextView
     private lateinit var mLocationManager: LocationManager
     private lateinit var mLocationListener: LocationListener
 
@@ -50,12 +47,7 @@ class HomeFragment : Fragment() {
         weatherState = view.findViewById(R.id.weather_tv)
         temperature = view.findViewById(R.id.temperature_tv)
         weatherIcon = view.findViewById(R.id.weather_ic)
-        locationTextView = view.findViewById(R.id.locationTextView)
         return view
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onResume() {
@@ -67,10 +59,6 @@ class HomeFragment : Fragment() {
         mLocationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         mLocationListener = object : LocationListener {
             override fun onLocationChanged(location: Location) {
-                val locationInfo = "위도: ${location.latitude}, 경도: ${location.longitude}, 정확도: ${location.accuracy}m"
-                Log.d("Location", locationInfo)
-                locationTextView.text = locationInfo
-
                 val params = RequestParams().apply {
                     put("lat", location.latitude)
                     put("lon", location.longitude)
@@ -102,28 +90,6 @@ class HomeFragment : Fragment() {
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener)
     }
 
-    private fun getWeatherInCurrentLocation() {
-        mLocationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        mLocationListener = LocationListener { p0 ->
-            val params: RequestParams = RequestParams()
-            params.put("lat",p0.latitude)
-            params.put("lon",p0.longitude)
-            params.put("appid",Companion.API_KEY)
-            doNetworking(params)
-        }
-        if (ActivityCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        ) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION), WEATHER_REQUEST)
-            return
-        }
-        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener)
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,MIN_TIME, MIN_DISTANCE, mLocationListener)
-    }
 
     private fun doNetworking(params: RequestParams) {
         var client = AsyncHttpClient()
