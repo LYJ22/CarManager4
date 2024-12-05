@@ -1035,7 +1035,7 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/textViewApply"
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="#232756"

@@ -74,7 +74,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         val editTextCarNumber = findViewById<EditText>(R.id.editTextCarNumber)
-        val textViewApply = findViewById<TextView>(R.id.textViewApply)
+        val textViewApply = findViewById<TextView>(R.id.textView4)
 
         textViewApply.setOnClickListener {
             val car = Car()
