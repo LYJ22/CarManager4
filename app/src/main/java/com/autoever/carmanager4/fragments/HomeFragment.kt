@@ -2,6 +2,7 @@ package com.autoever.carmanager4.fragments
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationListener
 import android.location.LocationManager
@@ -18,6 +19,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.autoever.carmanager4.R
 import com.autoever.carmanager4.WeatherData
+import com.autoever.carmanager4.activities.RegisterActivity
 import com.autoever.carmanager4.models.Car
 import com.google.firebase.firestore.FirebaseFirestore
 import com.loopj.android.http.AsyncHttpClient
@@ -44,6 +46,7 @@ class HomeFragment : Fragment() {
     private lateinit var carModelTextView: TextView
     private lateinit var carImageView: ImageView
     private lateinit var carNumTextView: TextView
+    private lateinit var textViewRemove: TextView
     private val firestore =FirebaseFirestore.getInstance()
 
 
@@ -58,6 +61,10 @@ class HomeFragment : Fragment() {
         carModelTextView = view.findViewById(R.id.carModelTextView)
         carImageView = view.findViewById(R.id.carImageView)
         carNumTextView = view.findViewById(R.id.carNumTextView)
+        textViewRemove = view.findViewById(R.id.textViewRemove)
+
+        setOnClickListener()
+
         fetchCarInfo()
 
         return view
@@ -155,4 +162,18 @@ class HomeFragment : Fragment() {
         }
     }
 
+    fun setOnClickListener() {
+        textViewRemove.setOnClickListener {
+            // 앱에 저장돼 있는 carID 삭제
+            val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.remove("carID")
+            editor.commit()
+
+            // 차량등록 액티비티로 이동
+            val intent = Intent(requireContext(), RegisterActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+        }
+    }
 }

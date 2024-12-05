@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".fragments.HomeFragment">
@@ -132,8 +133,6 @@
 
     </LinearLayout>
 
-
-    <!-- 날씨 아이콘 및 텍스트 -->
     <LinearLayout
         android:id="@+id/weather_info_layout"
         android:layout_width="match_parent"
@@ -175,6 +174,19 @@
 
     </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/textViewRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="차량 삭제" />
+
+
+    <!-- 날씨 아이콘 및 텍스트 -->
 
 
 </LinearLayout>
