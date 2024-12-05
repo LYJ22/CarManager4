@@ -9,7 +9,7 @@ class Car(
     var rightFrontPre: Int = 0,
     var leftBackPre: Int = 0,
     var rightBackPre: Int = 0,
-    var temperature: Int = 0,
+    var temperature: Double = 22.0,
     var drivingRange:Int = 0,
     var isEngineOn: Boolean = false,
     var isWindowOpen: Boolean = false,
