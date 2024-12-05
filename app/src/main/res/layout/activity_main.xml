@@ -16,16 +16,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         app:navGraph="@navigation/nav_graph" />
-    <TextView
-        android:id="@+id/locationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="위치 정보 대기 중..."
-        android:textSize="18sp"
-        android:layout_margin="16dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
