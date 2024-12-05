@@ -17,30 +17,26 @@
         android:id="@+id/weather_txt_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="15dp"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/weather_ic">
+        android:layout_margin="15dp"
+        android:layout_toEndOf="@id/weather_ic"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/temperature_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25sp"
             tools:text="00" />
+
         <TextView
             android:id="@+id/weather_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Sunny"/>
+            android:text="날씨 정보 로딩 중..."
+            tools:text="Sunny" />
     </LinearLayout>
-    <TextView
-        android:id="@+id/locationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="위치 정보 대기 중..."
-        android:textSize="18sp"
-        android:layout_margin="16dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        />
+
+
+
 </RelativeLayout>
