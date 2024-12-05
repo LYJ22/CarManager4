@@ -3,6 +3,7 @@ package com.autoever.carmanager4.models
 class Car(
     var model:String="",
     var num:String="",
+    var imgName:String="",
     var totalDistance: Int = 0,
     var leftFrontPre: Int = 0,
     var rightFrontPre: Int = 0,
