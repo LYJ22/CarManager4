@@ -47,8 +47,13 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
     testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // 인터넷 연결
+    implementation ("com.loopj.android:android-async-http:1.4.11")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // 뷰페이저
     implementation("androidx.viewpager2:viewpager2:1.1.0")
