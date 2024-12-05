@@ -33,4 +33,14 @@
             android:layout_height="wrap_content"
             tools:text="Sunny"/>
     </LinearLayout>
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="위치 정보 대기 중..."
+        android:textSize="18sp"
+        android:layout_margin="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
 </RelativeLayout>
