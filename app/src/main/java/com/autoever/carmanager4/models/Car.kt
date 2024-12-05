@@ -1,8 +1,8 @@
 package com.autoever.carmanager4.models
 
 class Car(
-    val model:String="",
-    val num:String="",
+    var model:String="",
+    var num:String="",
     var totalDistance: Int = 0,
     var leftFrontPre: Int = 0,
     var rightFrontPre: Int = 0,

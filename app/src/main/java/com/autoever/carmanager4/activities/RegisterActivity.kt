@@ -1,21 +1,26 @@
 package com.autoever.carmanager4.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.autoever.carmanager4.R
+import com.autoever.carmanager4.models.Car
+import com.google.firebase.firestore.FirebaseFirestore
 
 // 등록 페이지
 class RegisterActivity : AppCompatActivity() {
 
     private var isInListener = false
-    private lateinit var carType: String
+    private var carType: String = "캐스퍼 일레트릭"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +55,6 @@ class RegisterActivity : AppCompatActivity() {
             findViewById(R.id.radioGroupLine19)
         )
 
-
         radioGroupList.forEach { radioGroup ->
             // 각 라디오 그룹마다 changeListener 설정
             radioGroup.setOnCheckedChangeListener { line, i ->
@@ -69,5 +73,36 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        val editTextCarNumber = findViewById<EditText>(R.id.editTextCarNumber)
+        val textViewApply = findViewById<TextView>(R.id.textViewApply)
+
+        textViewApply.setOnClickListener {
+            val car = Car()
+            car.model = carType
+            val carNum = editTextCarNumber.text.toString()
+            if(carNum.isBlank()){
+                Toast.makeText(this, "차 번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                car.num = carNum
+                saveCarInfo(car)
+            }
+        }
+    }
+
+    fun saveCarInfo(car: Car){
+        val firestore = FirebaseFirestore.getInstance()
+        firestore.collection("cars")
+            .document("car1")
+            .set(car)
+            .addOnSuccessListener {
+                // 메인 화면으로 이동. 메인에서 뒤로 가기 할 때 등록 페이지 안 나옴.
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "차 등록에 실패했습니다", Toast.LENGTH_SHORT).show()
+            }
     }
 }
