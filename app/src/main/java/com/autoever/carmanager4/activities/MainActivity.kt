@@ -9,9 +9,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import android.Manifest
 import android.content.pm.PackageManager
+import android.util.Log
 import android.widget.TextView
 import com.autoever.carmanager4.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.UUID
 
 class MainActivity : AppCompatActivity() {
     private lateinit var listener: LocationListener
@@ -46,6 +48,5 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setupWithNavController(navController)
-
     }
 }

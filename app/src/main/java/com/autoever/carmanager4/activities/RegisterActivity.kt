@@ -1,5 +1,6 @@
 package com.autoever.carmanager4.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.autoever.carmanager4.R
 import com.autoever.carmanager4.models.Car
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.UUID
 
 // 등록 페이지
 class RegisterActivity : AppCompatActivity() {
@@ -93,9 +95,13 @@ class RegisterActivity : AppCompatActivity() {
     fun saveCarInfo(car: Car){
         val firestore = FirebaseFirestore.getInstance()
         firestore.collection("cars")
-            .document("car1")
-            .set(car)
-            .addOnSuccessListener {
+            .add(car)
+            .addOnSuccessListener { documentReference ->
+                // 차량 문서ID 앱에 저장
+                val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("carID", documentReference.id)
+                editor.commit()
                 // 메인 화면으로 이동. 메인에서 뒤로 가기 할 때 등록 페이지 안 나옴.
                 val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
