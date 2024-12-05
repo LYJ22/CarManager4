@@ -113,23 +113,7 @@ class ControlFragment : Fragment() {
         return view
     }
 
-    fun addCar() {
 
-
-// 데이터 객체 생성
-        val car = Car(model = "sonata", num = "123")
-
-// 특정 컬렉션과 문서에 저장
-        firestore.collection("cars")
-            .document("car1") // 문서 ID를 직접 지정
-            .set(car)
-            .addOnSuccessListener {
-                Log.d("Firestore", "DocumentSnapshot successfully written!")
-            }
-            .addOnFailureListener { e ->
-                Log.w("Firestore", "Error writing document", e)
-            }
-    }
 
 
     private fun getCar() {
