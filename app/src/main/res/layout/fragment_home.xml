@@ -3,40 +3,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.HomeFragment"
+    android:padding="16dp"
+    android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/weather_ic"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_centerVertical="true"
-        android:layout_margin="15dp"
-        android:src="@drawable/clear" />
-
+    <!-- 차량 정보 표시 -->
     <LinearLayout
-        android:id="@+id/weather_txt_container"
-        android:layout_width="wrap_content"
+        android:id="@+id/car_info_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_margin="15dp"
-        android:layout_toEndOf="@id/weather_ic"
-        android:orientation="vertical">
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="32dp">
 
         <TextView
-            android:id="@+id/temperature_tv"
+            android:id="@+id/car_model_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            tools:text="00" />
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="캐스퍼 일레트릭" />
 
-        <TextView
-            android:id="@+id/weather_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="날씨 정보 로딩 중..."
-            tools:text="Sunny" />
+        <ImageView
+            android:id="@+id/car_image_iv"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Car Image"
+            android:src="@drawable/casper"
+            android:layout_marginBottom="16dp" />
+
     </LinearLayout>
 
+    <!-- 날씨 아이콘 및 텍스트 -->
+    <LinearLayout
+        android:id="@+id/weather_info_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/car_info_layout"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
 
+        <ImageView
+            android:id="@+id/weather_ic"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/clear"
+            android:contentDescription="Weather Icon"
+            android:layout_marginEnd="8dp" />
+
+        <LinearLayout
+            android:id="@+id/weather_txt_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/temperature_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                tools:text="25°C" />
+
+            <TextView
+                android:id="@+id/weather_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                tools:text="맑음" />
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

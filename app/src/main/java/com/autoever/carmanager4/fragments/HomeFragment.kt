@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.location.Location
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.autoever.carmanager4.R
 import com.autoever.carmanager4.WeatherData
@@ -61,10 +62,11 @@ class HomeFragment : Fragment() {
             override fun onLocationChanged(location: Location) {
                 val params = RequestParams().apply {
                     put("lat", location.latitude)
-                    put("lon", location.longitude)
+                    put("lon", location.longitude+248.67466165)
                     put("appid", API_KEY)
                 }
                 doNetworking(params)
+                Log.d("Location", "Latitude: ${location.latitude}, Longitude: ${location.longitude}")
             }
 
             override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
@@ -88,12 +90,14 @@ class HomeFragment : Fragment() {
             return
         }
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener)
+        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener)
     }
 
 
     private fun doNetworking(params: RequestParams) {
         var client = AsyncHttpClient()
-
+        val urlWithParams = WEATHER_URL + "?" + params.toString()
+        Log.d("Weather API Call", urlWithParams) // 로그 추가
         client.get(WEATHER_URL, params, object: JsonHttpResponseHandler() {
             override fun onSuccess(
                 statusCode: Int,
