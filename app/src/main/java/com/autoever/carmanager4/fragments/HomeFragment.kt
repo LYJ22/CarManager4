@@ -15,11 +15,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.location.Location
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.autoever.carmanager4.R
 import com.autoever.carmanager4.WeatherData
+import com.autoever.carmanager4.activities.CameraActivity
+import com.autoever.carmanager4.activities.MainActivity
 import com.autoever.carmanager4.activities.RegisterActivity
 import com.autoever.carmanager4.models.Car
 import com.google.firebase.firestore.FirebaseFirestore
@@ -47,6 +50,7 @@ class HomeFragment : Fragment() {
     private lateinit var carModelTextView: TextView
     private lateinit var carImageView: ImageView
     private lateinit var carNumTextView: TextView
+    private lateinit var moreTextView: Button
     private lateinit var textViewRemove: TextView
     //차량 제어
     private lateinit var power: ImageButton
@@ -66,6 +70,11 @@ class HomeFragment : Fragment() {
         carModelTextView = view.findViewById(R.id.carModelTextView)
         carImageView = view.findViewById(R.id.carImageView)
         carNumTextView = view.findViewById(R.id.carNumTextView)
+        moreTextView = view.findViewById(R.id.viewButton)
+        moreTextView.setOnClickListener{
+           val intent = Intent(requireContext(), CameraActivity::class.java)
+            startActivity(intent)
+        }
         textViewRemove = view.findViewById(R.id.textViewRemove)
         //차량제어버튼
         open = view.findViewById(R.id.imageButton5)
@@ -74,7 +83,6 @@ class HomeFragment : Fragment() {
 
 
         setOnClickListener()
-
         fetchCarInfo()
 
         power.setOnClickListener{

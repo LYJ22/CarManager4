@@ -7,7 +7,8 @@ plugins {
 android {
     namespace = "com.autoever.carmanager4"
     compileSdk = 35
-
+    // 뷰 바인딩 기법 사용
+    viewBinding.isEnabled = true
     defaultConfig {
         applicationId = "com.autoever.carmanager4"
         minSdk = 26
