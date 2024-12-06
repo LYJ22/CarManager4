@@ -64,14 +64,16 @@ class ControlFragment : Fragment() {
             carState!!.temperature += 0.1
             temp.text = formatTemperature(carState!!.temperature)
             updateCarState(carState!!)
+            Toast.makeText(requireContext(), "온도가 0.1℃ 올라갔습니다~☀\uFE0F", Toast.LENGTH_SHORT).show()
         }
         tempDown.setOnClickListener {
             carState!!.temperature -= 0.1
             temp.text = formatTemperature(carState!!.temperature)
             updateCarState(carState!!)
+            Toast.makeText(requireContext(), "온도가 0.1℃ 내려갔습니다~❄\uFE0F", Toast.LENGTH_SHORT).show()
         }
-        horn.setOnClickListener{
-            Toast.makeText(requireContext(), "경적 \uD83D\uDCE2~!", Toast.LENGTH_SHORT).show()
+        horn.setOnClickListener{Toast.makeText(requireContext(), "경적 \uD83D\uDCE2~!", Toast.LENGTH_SHORT).show()
+
             horn.setBackgroundResource(R.drawable.glowing_button)
 
             // 1초 후 원래 상태로 복원
