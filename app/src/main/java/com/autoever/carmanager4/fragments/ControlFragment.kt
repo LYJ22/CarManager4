@@ -1,6 +1,7 @@
 package com.autoever.carmanager4.fragments
 
 import android.animation.Animator
+import android.content.Context
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.util.Log
@@ -13,9 +14,12 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.autoever.carmanager4.R
 import com.autoever.carmanager4.models.Car
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 // 제어 페이지
 class ControlFragment : Fragment() {
@@ -68,12 +72,34 @@ class ControlFragment : Fragment() {
         }
         horn.setOnClickListener{
             Toast.makeText(requireContext(), "경적 \uD83D\uDCE2~!", Toast.LENGTH_SHORT).show()
+            horn.setBackgroundResource(R.drawable.glowing_button)
+
+            // 1초 후 원래 상태로 복원
+            lifecycleScope.launch {
+                delay(1000) // 1초 (1000ms) 대기
+                horn.setBackgroundResource(R.drawable.rounded_button) // 원래 상태로 복원
+            }
         }
         windowOpen.setOnClickListener{
             Toast.makeText(requireContext(), "창문이 열립니다 \uD83D\uDD3D", Toast.LENGTH_SHORT).show()
+            windowOpen.setBackgroundResource(R.drawable.glowing_button)
+
+            // 1초 후 원래 상태로 복원
+            lifecycleScope.launch {
+                delay(1000) // 1초 (1000ms) 대기
+                windowOpen.setBackgroundResource(R.drawable.rounded_button) // 원래 상태로 복원
+            }
         }
         windowClose.setOnClickListener{
             Toast.makeText(requireContext(), "창문이 닫힙니다 \uD83D\uDD3C", Toast.LENGTH_SHORT).show()
+
+            windowClose.setBackgroundResource(R.drawable.glowing_button)
+
+            // 1초 후 원래 상태로 복원
+            lifecycleScope.launch {
+                delay(1000) // 1초 (1000ms) 대기
+                windowClose.setBackgroundResource(R.drawable.rounded_button) // 원래 상태로 복원
+            }
         }
         power.setOnClickListener{
             carState?.let { car ->
@@ -113,28 +139,14 @@ class ControlFragment : Fragment() {
         return view
     }
 
-    fun addCar() {
 
-
-// 데이터 객체 생성
-        val car = Car(model = "sonata", num = "123")
-
-// 특정 컬렉션과 문서에 저장
-        firestore.collection("cars")
-            .document("car1") // 문서 ID를 직접 지정
-            .set(car)
-            .addOnSuccessListener {
-                Log.d("Firestore", "DocumentSnapshot successfully written!")
-            }
-            .addOnFailureListener { e ->
-                Log.w("Firestore", "Error writing document", e)
-            }
-    }
 
 
     private fun getCar() {
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val carID = sharedPreferences.getString("carID", null)
         firestore.collection("cars")
-            .document("car1")
+            .document(carID!!)
             .get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
@@ -167,8 +179,10 @@ class ControlFragment : Fragment() {
 
 
     private fun updateCarState(car: Car) {
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val carID = sharedPreferences.getString("carID", null)
         firestore.collection("cars")
-            .document("car1")
+            .document(carID!!)
             .set(car)
             .addOnSuccessListener {
                 Log.d("Firestore", "Car state updated: ${car!!.temperature}")
