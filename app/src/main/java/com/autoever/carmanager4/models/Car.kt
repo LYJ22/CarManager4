@@ -1,5 +1,7 @@
 package com.autoever.carmanager4.models
 
+import java.io.Serializable
+
 class Car(
     var model:String="",
     var num:String="",
@@ -13,5 +15,6 @@ class Car(
     var drivingRange:String = "250",
     var isEngineOn: Boolean = false,
     var isWindowOpen: Boolean = false,
-    var isLocked: Boolean = true
-)
+    var isLocked: Boolean = true,
+    var imgList: String =""
+) : Serializable

@@ -193,28 +193,30 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/viewButton"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="더보기"
                 android:textColorLink="#E91E63" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
-    </LinearLayout>
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        <TextView
+            android:id="@+id/textViewRemove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="차량 삭제" />
 
-    <TextView
-        android:id="@+id/textViewRemove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="차량 삭제" />
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -7,16 +7,15 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import com.autoever.carmanager4.R
-import com.autoever.carmanager4.adapters.ImageAdapter
+//import com.autoever.carmanager4.adapters.ImageAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -24,8 +23,9 @@ import java.util.UUID
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var storageRef: StorageReference
-    private lateinit var listView: ListView
-    private val imageList = mutableListOf<Uri>()
+//    private lateinit var listView: ListView
+    private lateinit var imageView: ImageView
+    private var selectedImageUri: Uri? = null
 
     private val cameraPermissionLauncher: ActivityResultLauncher<String> =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -41,8 +41,9 @@ class CameraActivity : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.let { photoUri ->
                     uploadToFirebase(photoUri)
-                    imageList.add(photoUri)
-                    (listView.adapter as ImageAdapter).notifyDataSetChanged()
+                    selectedImageUri = photoUri
+                    imageView.setImageURI(photoUri)
+//                    (listView.adapter as ImageAdapter).notifyDataSetChanged()
                 }
             }
         }
@@ -53,8 +54,8 @@ class CameraActivity : AppCompatActivity() {
                 val photoUri: Uri? = result.data?.data
                 photoUri?.let {
                     uploadToFirebase(it)
-                    imageList.add(it)
-                    (listView.adapter as ImageAdapter).notifyDataSetChanged()
+                    imageView.setImageURI(it)
+//                    (listView.adapter as ImageAdapter).notifyDataSetChanged()
                 }
             }
         }
@@ -65,8 +66,9 @@ class CameraActivity : AppCompatActivity() {
         storageRef = FirebaseStorage.getInstance().reference
         val cameraButton: Button = findViewById(R.id.buttonCamera)
         val albumButton: Button = findViewById(R.id.buttonAlbum)
-        listView = findViewById(R.id.list_view)
-        listView.adapter = ImageAdapter(this, imageList)
+        val uploadButton: Button = findViewById(R.id.buttonUpload)
+        imageView = findViewById(R.id.imageViewCar)
+//        imageView.adapter = ImageAdapter(this, imageView)
 
         cameraButton.setOnClickListener {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
@@ -79,6 +81,12 @@ class CameraActivity : AppCompatActivity() {
         albumButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             imagePickLauncher.launch(intent)
+        }
+
+        uploadButton.setOnClickListener {
+            selectedImageUri?.let {
+                uploadToFirebase(it)
+            } ?: Toast.makeText(this, "업로드할 사진을 선택하세요.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -106,8 +114,8 @@ class CameraActivity : AppCompatActivity() {
         imageRef.putFile(photoUri)
             .addOnSuccessListener {
                 imageRef.downloadUrl.addOnSuccessListener { uri ->
-                    imageList.add(uri)
-                    (listView.adapter as ImageAdapter).notifyDataSetChanged()
+                    imageView.setImageURI(uri)
+//                    (listView.adapter as ImageAdapter).notifyDataSetChanged()
                     saveImageUrlToDatabase(uri)
                 }
             }
