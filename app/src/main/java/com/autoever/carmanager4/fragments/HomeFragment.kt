@@ -2,6 +2,7 @@ package com.autoever.carmanager4.fragments
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationListener
 import android.location.LocationManager
@@ -14,10 +15,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.location.Location
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.autoever.carmanager4.R
 import com.autoever.carmanager4.WeatherData
+import com.autoever.carmanager4.activities.CameraActivity
+import com.autoever.carmanager4.activities.MainActivity
 import com.autoever.carmanager4.models.Car
 import com.google.firebase.firestore.FirebaseFirestore
 import com.loopj.android.http.AsyncHttpClient
@@ -44,6 +48,7 @@ class HomeFragment : Fragment() {
     private lateinit var carModelTextView: TextView
     private lateinit var carImageView: ImageView
     private lateinit var carNumTextView: TextView
+    private lateinit var moreTextView: Button
     private val firestore =FirebaseFirestore.getInstance()
 
 
@@ -58,6 +63,11 @@ class HomeFragment : Fragment() {
         carModelTextView = view.findViewById(R.id.carModelTextView)
         carImageView = view.findViewById(R.id.carImageView)
         carNumTextView = view.findViewById(R.id.carNumTextView)
+        moreTextView = view.findViewById(R.id.viewButton)
+        moreTextView.setOnClickListener{
+           val intent = Intent(requireContext(), CameraActivity::class.java)
+            startActivity(intent)
+        }
         fetchCarInfo()
 
         return view
