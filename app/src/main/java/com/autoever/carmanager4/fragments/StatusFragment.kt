@@ -1,5 +1,6 @@
 package com.autoever.carmanager4.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -46,8 +47,10 @@ class StatusFragment : Fragment() {
 
 
     private fun getCar() {
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val carID = sharedPreferences.getString("carID", null)
         firestore.collection("cars")
-            .document("car1")
+            .document(carID!!)
             .get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
@@ -65,7 +68,8 @@ class StatusFragment : Fragment() {
                 leftBack.text = carState!!.leftBackPre
                 leftFront.text = carState!!.leftFrontPre
                 rightBack.text = carState!!.rightBackPre
-                rightFront.text=carState!!.rightFrontPre
+                rightFront.text= carState!!.rightFrontPre
+
 
 
 

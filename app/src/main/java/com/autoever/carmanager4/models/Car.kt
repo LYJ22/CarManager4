@@ -3,7 +3,8 @@ package com.autoever.carmanager4.models
 class Car(
     var model:String="",
     var num:String="",
-    var totalDistance: String = "100000",
+    var imgName:String="",
+    var totalDistance: String = "100,000",
     var leftFrontPre: String = "30",
     var rightFrontPre: String = "35",
     var leftBackPre: String = "38",

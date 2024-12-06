@@ -75,4 +75,8 @@ dependencies {
     // 글라이드
     implementation("com.github.bumptech.glide:glide:4.15.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
+
+    // 인터넷 연결
+    implementation ("com.loopj.android:android-async-http:1.4.11")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 }

@@ -98,14 +98,14 @@
                         android:layout_height="130dp"
                         android:layout_weight="1"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/casper_ev_well_side" />
+                        app:srcCompat="@drawable/casperev" />
 
                     <ImageView
                         android:id="@+id/imageView101"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/st1_24lc_well_side" />
+                        app:srcCompat="@drawable/st1" />
                 </LinearLayout>
 
                 <RadioGroup
@@ -140,14 +140,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/nexo_24my_well_side" />
+                        app:srcCompat="@drawable/nexo24" />
 
                     <ImageView
                         android:id="@+id/imageView103"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/kona_electric_24my_well_side" />
+                        app:srcCompat="@drawable/konaelectric" />
                 </LinearLayout>
 
                 <RadioGroup
@@ -181,14 +181,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/ioniq6_24my_well_side" />
+                        app:srcCompat="@drawable/ioniq624" />
 
                     <ImageView
                         android:id="@+id/imageView105"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/porter2_electric_well_side" />
+                        app:srcCompat="@drawable/porter2electric" />
                 </LinearLayout>
 
                 <RadioGroup
@@ -244,14 +244,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/ioniq5_n_25my_well_side" />
+                        app:srcCompat="@drawable/ioniq5n" />
 
                     <ImageView
                         android:id="@+id/imageView107"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/avante_n_25my_well_side" />
+                        app:srcCompat="@drawable/avanten" />
                 </LinearLayout>
 
                 <RadioGroup
@@ -308,14 +308,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/sonata_the_edge_25my_well_side" />
+                        app:srcCompat="@drawable/sonatatheedge25" />
 
                     <ImageView
                         android:id="@+id/imageView109"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/avante_25my_well_side" />
+                        app:srcCompat="@drawable/avante25" />
                 </LinearLayout>
 
                 <RadioGroup
@@ -349,7 +349,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/grandeur_25my_well_side" />
+                        app:srcCompat="@drawable/grandeur25" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -409,14 +409,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/casper_25my_well_side" />
+                        app:srcCompat="@drawable/casper25" />
 
                     <ImageView
                         android:id="@+id/imageView112"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/tucson_25my_well_side" />
+                        app:srcCompat="@drawable/tucson25" />
 
                 </LinearLayout>
 
@@ -452,14 +452,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/venue_23my_well_side" />
+                        app:srcCompat="@drawable/venue23" />
 
                     <ImageView
                         android:id="@+id/imageView114"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/kona_24my_well_side" />
+                        app:srcCompat="@drawable/kona24" />
 
                 </LinearLayout>
 
@@ -495,14 +495,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/santafe_25my_well_side" />
+                        app:srcCompat="@drawable/santafe25" />
 
                     <ImageView
                         android:id="@+id/imageView116"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/palisade_24my_well_side" />
+                        app:srcCompat="@drawable/palisade24" />
 
                 </LinearLayout>
 
@@ -560,14 +560,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/staria_lounge_24my_well_side" />
+                        app:srcCompat="@drawable/starialounge" />
 
                     <ImageView
                         android:id="@+id/imageView118"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/staria_24my_well_side" />
+                        app:srcCompat="@drawable/staria" />
 
                 </LinearLayout>
 
@@ -603,14 +603,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/staria_kinder_24my_well_side" />
+                        app:srcCompat="@drawable/stariakinder" />
 
                     <ImageView
                         android:id="@+id/imageView120"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/staria_lounge_camper_24my_well_side" />
+                        app:srcCompat="@drawable/stariacamper" />
 
                 </LinearLayout>
 
@@ -668,14 +668,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/grandeur_taxi_25my_well_side" />
+                        app:srcCompat="@drawable/grandeurtaxi" />
 
                     <ImageView
                         android:id="@+id/imageView122"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/sonata_taxi_24lc_well_side" />
+                        app:srcCompat="@drawable/sonatataxi" />
 
                 </LinearLayout>
 
@@ -711,14 +711,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/staria_lounge_mobility_hybrid_24my_well_side" />
+                        app:srcCompat="@drawable/stariamobilityhybrid" />
 
                     <ImageView
                         android:id="@+id/imageView124"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/porter2_well_side" />
+                        app:srcCompat="@drawable/porter2" />
 
                 </LinearLayout>
 
@@ -754,7 +754,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/porter2_special_24my_well_side" />
+                        app:srcCompat="@drawable/porter2special" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -814,14 +814,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/mighty_well_side" />
+                        app:srcCompat="@drawable/mighty" />
 
                     <ImageView
                         android:id="@+id/imageView127"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/pavise_well_side" />
+                        app:srcCompat="@drawable/pavise" />
                 </LinearLayout>
 
                 <RadioGroup
@@ -855,7 +855,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/new_power_truck_well_side" />
+                        app:srcCompat="@drawable/newpowertruck" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -915,14 +915,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/solati_well_side" />
+                        app:srcCompat="@drawable/solati" />
 
                     <ImageView
                         android:id="@+id/imageView130"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/county_24my_well_side" />
+                        app:srcCompat="@drawable/county" />
 
                 </LinearLayout>
 
@@ -958,14 +958,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/elec_city_town_290x130" />
+                        app:srcCompat="@drawable/eleccitytown" />
 
                     <ImageView
                         android:id="@+id/imageView132"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/elec_city_290x130" />
+                        app:srcCompat="@drawable/eleccity" />
 
                 </LinearLayout>
 
@@ -1001,7 +1001,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/elec_city_double_decker_290x130" />
+                        app:srcCompat="@drawable/eleccitydoubledecker" />
 
                     <Space
                         android:layout_width="match_parent"
