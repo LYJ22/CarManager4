@@ -1,9 +1,13 @@
 package com.autoever.carmanager4.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -15,12 +19,17 @@ import androidx.core.view.WindowInsetsCompat
 import com.autoever.carmanager4.R
 import com.autoever.carmanager4.models.Car
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.UUID
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+
 
 // 등록 페이지
 class RegisterActivity : AppCompatActivity() {
 
     private var isInListener = false
     private var carType: String = "캐스퍼 일레트릭"
+    private var carImg: String = "casperev"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +39,19 @@ class RegisterActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        try {
+            val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures!!) {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.d("키해시는 :", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        } catch (e: NoSuchAlgorithmException) {
+            e.printStackTrace()
         }
 
         // 라디오 그룹 목록
@@ -61,8 +83,12 @@ class RegisterActivity : AppCompatActivity() {
                 if (isInListener) return@setOnCheckedChangeListener // 리스너 안에서 무한루프 방지
                 isInListener = true // 리스너 안에서 상태 변경 시 플래그 활성화
 
-                carType = findViewById<RadioButton>(i).text.toString()
-                Log.d("item","$carType")
+                var selectedRadioButton = findViewById<RadioButton>(i)
+                carType = selectedRadioButton.text.toString()
+                carImg = resources.getResourceEntryName(selectedRadioButton.id)
+                    .substring(11).lowercase()
+
+                Log.d("item","$carType $carImg")
                 radioGroupList.forEach{ group ->
                     if(group != line) {
                         group.clearCheck()
@@ -79,6 +105,7 @@ class RegisterActivity : AppCompatActivity() {
         textViewApply.setOnClickListener {
             val car = Car()
             car.model = carType
+            car.imgName = carImg
             val carNum = editTextCarNumber.text.toString()
             if(carNum.isBlank()){
                 Toast.makeText(this, "차 번호를 입력해주세요", Toast.LENGTH_SHORT).show()
@@ -93,9 +120,13 @@ class RegisterActivity : AppCompatActivity() {
     fun saveCarInfo(car: Car){
         val firestore = FirebaseFirestore.getInstance()
         firestore.collection("cars")
-            .document("car1")
-            .set(car)
-            .addOnSuccessListener {
+            .add(car)
+            .addOnSuccessListener { documentReference ->
+                // 차량 문서ID 앱에 저장
+                val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("carID", documentReference.id)
+                editor.commit()
                 // 메인 화면으로 이동. 메인에서 뒤로 가기 할 때 등록 페이지 안 나옴.
                 val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)

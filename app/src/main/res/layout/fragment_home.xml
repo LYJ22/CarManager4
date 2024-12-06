@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:id="@+id/fragment_container"
     android:padding="16dp"
@@ -35,7 +36,7 @@
 
         <ImageView
             android:id="@+id/carImageView"
-            android:layout_width="200dp"
+            android:layout_width="260dp"
             android:layout_height="120dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="Car Image"
@@ -123,19 +124,17 @@
                 android:background="@drawable/rounded_button"
                 android:padding="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/windowd" />
+                android:src="@drawable/padlock" />
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="창문열기" />
+                android:text="문열기" />
         </LinearLayout>
 
     </LinearLayout>
 
-
-    <!-- 날씨 아이콘 및 텍스트 -->
     <LinearLayout
         android:id="@+id/weather_info_layout"
         android:layout_width="match_parent"
@@ -177,6 +176,7 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -206,7 +206,15 @@
         </LinearLayout>
 
     </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-
+    <TextView
+        android:id="@+id/textViewRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="차량 삭제" />
 
 </LinearLayout>
